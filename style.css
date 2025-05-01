@@ -97,6 +97,7 @@ select:focus, button:focus {
   max-width: 1000px;
   margin: 0 auto;
   padding: 0 1em;
+  min-height: 500px;
 }
 
 .card {
@@ -138,6 +139,11 @@ select:focus, button:focus {
   font-size: 1.1em;
   color: #64748b;
   padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  grid-column: 1 / -1;
 }
 
 .loading {
