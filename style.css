@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #2563eb;
+  --primary-color: #3b82f6;
   --secondary-color: #1e40af;
   --background-color: #f8fafc;
   --card-background: #ffffff;
@@ -7,6 +7,16 @@
   --border-radius: 12px;
   --box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   --transition: all 0.3s ease;
+  
+  /* New color variables */
+  --sunrise-color: #f59e0b;
+  --sunset-color: #8b5cf6;
+  --dawn-color: #ec4899;
+  --dusk-color: #6366f1;
+  --day-color: #10b981;
+  --noon-color: #f97316;
+  --error-color: #ef4444;
+  --success-color: #22c55e;
 }
 
 body {
@@ -21,33 +31,61 @@ body {
 }
 
 header {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, 
+    var(--sunrise-color) 0%,
+    var(--dawn-color) 25%,
+    var(--primary-color) 50%,
+    var(--dusk-color) 75%,
+    var(--sunset-color) 100%
+  );
   color: white;
   padding: 2em 1em;
   text-align: center;
   box-shadow: var(--box-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, 
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  pointer-events: none;
 }
 
 header h1 {
   margin: 0;
   font-size: 2.5em;
   font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  position: relative;
 }
 
 header p {
   margin: 0.5em 0 0;
   opacity: 0.9;
+  position: relative;
 }
 
 header a {
-  color: #93c5fd;
+  color: #ffffff;
   text-decoration: none;
   transition: var(--transition);
+  position: relative;
 }
 
 header a:hover {
-  color: #bfdbfe;
+  color: #ffffff;
   text-decoration: underline;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 main {
@@ -81,11 +119,13 @@ select, button {
 select:hover, button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 8px -1px rgba(0, 0, 0, 0.1), 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  background-color: var(--primary-color);
+  color: white;
 }
 
 select:focus, button:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
 }
 
 #dashboard {
@@ -124,10 +164,46 @@ select:focus, button:focus {
   font-weight: 600;
 }
 
+.card h3 i {
+  margin-right: 0.5em;
+  color: var(--primary-color);
+}
+
 .card p {
   margin: 0.75em 0;
   display: flex;
   justify-content: space-between;
+}
+
+.card p i {
+  margin-right: 0.5em;
+  width: 1.2em;
+  text-align: center;
+}
+
+/* Specific icon colors */
+.card p i.fa-sun {
+  color: var(--sunrise-color);
+}
+
+.card p i.fa-moon {
+  color: var(--sunset-color);
+}
+
+.card p i.fa-cloud-sun {
+  color: var(--dawn-color);
+}
+
+.card p i.fa-cloud-moon {
+  color: var(--dusk-color);
+}
+
+.card p i.fa-clock {
+  color: var(--day-color);
+}
+
+.card p i.fa-sun[title="Solar Noon"] {
+  color: var(--noon-color);
 }
 
 .card strong {
@@ -144,6 +220,21 @@ select:focus, button:focus {
   justify-content: center;
   min-height: 400px;
   grid-column: 1 / -1;
+}
+
+.placeholder i {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  color: var(--primary-color);
+  display: block;
+}
+
+.placeholder i.fa-exclamation-triangle {
+  color: var(--error-color);
+}
+
+.placeholder i.fa-map-marker-alt {
+  color: var(--success-color);
 }
 
 .loading {
@@ -180,9 +271,14 @@ select:focus, button:focus {
   grid-column: 1 / -1;
 }
 
+.timezone-info i {
+  margin-right: 0.5em;
+  color: #93c5fd;
+}
+
 footer {
-  background-color: var(--card-background);
-  color: var(--text-color);
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
   padding: 1.5em;
   text-align: center;
   box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
